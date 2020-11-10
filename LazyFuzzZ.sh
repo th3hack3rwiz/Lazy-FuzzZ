@@ -14,8 +14,8 @@ function usage()
 	echo -e "${GREEN}  Eg: ./lazyfuzz  example.com   example.com_https_subdomains.txt   common_fuzzing_wordlist.txt\n"
 	echo -e "${GREEN} -f : to use your own ffuf flags. (IMPORTANT: -f, if used, should be written before other arguments)"
 	echo -e "${GREEN}  Eg: ./lazyfuzz -f '-mc 403 -t 200'  example.com   example.com_https_subdomains.txt   common_fuzzing_wordlist.txt"
-	echo -e "${CYAN}Default ffuf flags used: -mc 200,403 -fs 0 -t 80 -sa -timeout 7"
-	echo -e "${RED}WARNING: Do not specify Output Flags, -u, and -w !"
+	echo -e "${CYAN}\n[+] Default ffuf flags used: -mc 200,403 -fs 0 -t 80 -sa -timeout 7"
+	echo -e "${RED}[-] WARNING: Do not specify Output Flags, -u, and -w !"
 }
 
 while getopts :f: fuzz_args; do 
@@ -86,7 +86,7 @@ then usage
 		fi
 		sleep 7
 		done
-		#echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
-		#python <path to bfedd.py>/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
-		#echo -e "\n${GREEN}[+] Script completed successfully! :D"
+		echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
+		#python <path to bfeed.py here>/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
+		echo -e "\n${GREEN}[+] Script completed successfully! :D"
 	fi
