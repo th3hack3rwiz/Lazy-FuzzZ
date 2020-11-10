@@ -86,7 +86,7 @@ then usage
 		fi
 		sleep 7
 		done
-		echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
-		python /home/hack3rwiz/Downloads/BurpFeed/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
-		echo -e "\n${GREEN}[+] Script completed successfully! :D"
+		#echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
+		#python <path to bfedd.py>/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
+		#echo -e "\n${GREEN}[+] Script completed successfully! :D"
 	fi
