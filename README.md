@@ -16,13 +16,13 @@
 
 ## Usage
 
-**[+] Usage:** ./lazyfuzz  <target-domain_name> <subdomains_https_file.txt> <common_wordlist.txt>  
+**[+] Usage:** ./LazyFuzzZ.sh  <target-domain_name> <subdomains_https_file.txt> <common_wordlist.txt>  
 
-**Eg:** ./lazyfuzz  example.com example.com_https_subdomains.txt   common_fuzzing_wordlist.txt
+***Eg:*** ./LazyFuzzZ.sh  example.com example.com_https_subdomains.txt   common_fuzzing_wordlist.txt
 
   **-f :** to use your own ffuf flags. (**IMPORTANT:** -f, if used, should be written before other arguments)
 
- **Eg:** ./lazyfuzz -f '-mc 403 -t 200 -recursion -recursion-depth 3'  example.com example.com_https_subdomains.txt   common_fuzzing_wordlist.txt
+ ***Eg:*** ./LazyFuzzZ.sh -f '-mc 403 -t 200 -recursion -recursion-depth 3'  example.com example.com_https_subdomains.txt   common_fuzzing_wordlist.txt
 
  **[+] Default FFUF Flags used:** -mc 200,403 -fs 0 -t 80 -sa -timeout 7
 
