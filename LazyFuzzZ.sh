@@ -1,13 +1,15 @@
+#!/bin/bash
 echo -e "\033[0;37m\e[1m$(figlet -f slant  Lazy FuzzZ)"
 YELLOW='\033[0;33m'
 echo -e "\033[0;37m\e[1m\n\t\t\t  ${YELLOW}© Created By: th3hack3rwiz"
 RED='\033[0;31m'
 CYAN='\033[0;36m'
-BLUE='\033[0;34m'
+BLUE='\033[0;35m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 MAGENTA='\033[0;95m'
 new=0
+dis=0
 function usage()
 {
 	echo -e "${GREEN}\n[+] Usage:\n\t./lazyfuzz  <target-domain name> <subdomains' http/https URLs to Fuzz file> <common wordlist file>"	
@@ -18,12 +20,16 @@ function usage()
 	echo -e "${RED}[-] WARNING: Do not specify Output Flags, -u, and -w !"
 }
 
-while getopts :f: fuzz_args; do 
+while getopts :f:d fuzz_args; do 
 	case $fuzz_args in
 		f)
-			echo -e "\n\nReplacing original flags with new flags..."
+			#echo -e "\n\n[+]Replacing original flags with new flags..."
 			new=1
 			flags=$OPTARG
+			;;
+		d)
+			#echo -e "\n[+]Disabling bfeed.py..."
+			dis=1
 			;;
 		*)
 			usage
@@ -40,7 +46,7 @@ then usage
 	echo -e "\n[+]Check usage!"
 	 else
 	 	printf "\n"
-		cat ${2} | grep ${1} | sort -u | sed 's/'${1}'/'${1}'\/FUZZ/g' > ${1}.fuZZmeePleasee
+		cat ${2} | grep ${1} | uniq | sed 's/'${1}'/'${1}'\/FUZZ/g' > ${1}.fuZZmeePleasee
 		echo -e "${GREEN}[+] Starting Lazy FuzzZ! :D\n"
 		mkdir lazyFuzzZ.output.${3}
 		for line in $(cat ${1}.fuZZmeePleasee) 
@@ -56,9 +62,9 @@ then usage
 			then 
 				max_occurence=$(cat lazyFuzzZ.output.${3}/${subdomain}.output | awk -F "," '{print $3}'| sort -n | grep [[:digit:]] | uniq -c | sort -k1 -nr | head -1 | awk '{print $1}')
 				max_size=$(cat lazyFuzzZ.output.${3}/${subdomain}.output | awk -F "," '{print $3}'| sort -n | grep [[:digit:]] | uniq -c | sort -k1 -nr | head -1 | awk '{print $2}')
-			if [[ $max_occurence>100 ]]
+			if [[ max_occurence -gt 100 ]] ; then
 				echo -e "${MAGENTA}[+]Results obtained with false positives... Removing them..."
-				then cat lazyFuzzZ.output.${3}/${subdomain}.output | grep -v $max_size > buff ; cat buff > lazyFuzzZ.output.${3}/${subdomain}.output
+				cat lazyFuzzZ.output.${3}/${subdomain}.output | grep -v $max_size > buff ; cat buff > lazyFuzzZ.output.${3}/${subdomain}.output
 			fi
 			if [[ -s lazyFuzzZ.output.${3}/${subdomain}.output ]]	#checking if file is non empty
 
@@ -74,6 +80,8 @@ then usage
 						cat lazyFuzzZ.output.${3}/${subdomain}.output | grep -v $max_freq_size > buff ; cat buff > lazyFuzzZ.output.${3}/${subdomain}.output
 						echo -e "${GREEN}[+] Results were obtained for $line ! :D \n"
 					fi 
+				else
+					echo -e "${GREEN}[+] Results were obtained for $line ! :D \n"
 				fi	
 					cat lazyFuzzZ.output.${3}/${subdomain}.output | cut -d " " -f1 >> lazyFuzzZ.output.${3}/burpSeeds
 			else
@@ -86,7 +94,9 @@ then usage
 		fi
 		sleep 7
 		done
-		echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
-		#python <path to bfeed.py here>/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
-		echo -e "\n${GREEN}[+] Script completed successfully! :D"
+		if [[ $dis -eq 0 ]] ; then
+			echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
+			python /home/hack3rwiz/Downloads/BurpFeed/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
+		fi
+		echo -e "${GREEN}[+] Thank you for using Lazy FuzzZ! :D"
 	fi
