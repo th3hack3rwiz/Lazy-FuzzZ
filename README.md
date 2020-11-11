@@ -20,7 +20,8 @@
 
 ***Eg:*** ./LazyFuzzZ.sh  example.com example.com_https_subdomains.txt   common_fuzzing_wordlist.txt
 
-  **-f :** to use your own ffuf flags. (**IMPORTANT:** -f, if used, should be written before other arguments)
+  **-f :** to use your own ffuf flags. (**IMPORTANT:** -flags should be written before command line arguments)
+  **-d :** to skip bfeed.py 
 
  ***Eg:*** ./LazyFuzzZ.sh -f '-mc 403 -t 200 -recursion -recursion-depth 3'  example.com example.com_https_subdomains.txt   common_fuzzing_wordlist.txt
 
