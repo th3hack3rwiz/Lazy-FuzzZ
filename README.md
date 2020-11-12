@@ -16,12 +16,12 @@ Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist. Fuzzi
 
 ## Instructions
 
-- Add the path to bfeed.py on line no. 100 of LazyFuzzZ.sh.
+- Add the path to bfeed.py on line no. 100 of lazyFuzzZ.sh.
 - Use flags (-d -f) if required, before supplying command line arguments.
 
 ## Usage
 
-- It  requires 3 command line arguments. <target-domain-name> <subdomains_https.txt> <common-wordlist.txt>
+- It  requires 3 command line arguments: ./lazyFuzzZ.sh <target-domain-name> <subdomains_https.txt> <common-wordlist.txt>
 
 ![](https://th3hack3rwiz.github.io/images/LazyFuzz/usageusage.PNG)
 
