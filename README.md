@@ -6,7 +6,7 @@ Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist. Fuzzi
 ## Installation
 
 1. Clone the repository : git clone https://github.com/th3hack3rwiz/Lazy-FuzzZ.git
-2. cd Lazy-FuzzZ ; chmod +x LazyFuzzZ.sh 
+2. cd Lazy-FuzzZ ; chmod +x lazyFuzzZ.sh 
 3. The script is now ready to use. 
 
 ## Requirements
