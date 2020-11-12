@@ -74,11 +74,11 @@ then usage
 				max_freq_size=$(cat lazyFuzzZ.output.${3}/${subdomain}.output | awk -F "," '{print $3}'| sort -n | grep [[:digit:]] | uniq -c | sort -k1 -nr | head -1 | awk '{print $2}')
 				max_size_freq=$(cat lazyFuzzZ.output.${3}/${subdomain}.output | awk -F "," '{print $3}'| sort -n | grep [[:digit:]] | uniq -c | sort -k1 -nr | head -1 | awk '{print $1}')
 				if [[ line_of_result -gt 1 ]]; then
-					if [[ max_size_freq -le line_of_result/2 ]]
-					then echo -e "${GREEN}[+] Results were obtained for $line ! :D \n"
+					if [[ max_size_freq -le line_of_result/2 ]] ; then
+						echo -e "${GREEN}[+] Results were obtained for $line ! :D \n"
 					else
 						echo -e "${ORANGE}[+]More false positives detected! :-]] Removing them..."
-						cat lazyFuzzZ.output.${3}/${subdomain}.output | grep -v $max_freq_size > buff ; cat buff > lazyFuzzZ.output.${3}/${subdomain}.output
+						cat lazyFuzzZ.output.${3}/${subdomain}.output | grep -v $max_freq_size > buff ; cat buff > lazyFuzzZ.output.${3}/${subdomain}.output ; rm buff
 						echo -e "${GREEN}[+] Results were obtained for $line ! :D \n"
 					fi 
 				else
