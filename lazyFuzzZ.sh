@@ -58,7 +58,7 @@ then usage
 		else
 			 ffuf -mc 200,403 -fs 0 -t 80 -sa -timeout 7 -u $line -w ${3} -of csv -o test > /dev/null
 		fi
-		cat test | sed s/'^.*http'/http/g | sed 's/\,\,/ /g' | grep http > lazyFuzzZ.output.${3}/${subdomain}.output
+		cat test | sed s/'^.*http'/http/g | sed 's/\,\,/ /g' | sed 's/ [[:digit:]]*,/                    /g' | sed 's/,$//g' | grep http > lazyFuzzZ.output.${3}/${subdomain}.output
 		if [[ -s lazyFuzzZ.output.${3}/${subdomain}.output ]]	#checking if file is non empty
 			then 
 				max_occurence=$(cat lazyFuzzZ.output.${3}/${subdomain}.output | awk -F "," '{print $3}'| sort -n | grep [[:digit:]] | uniq -c | sort -k1 -nr | head -1 | awk '{print $1}')
@@ -97,7 +97,7 @@ then usage
 		done
 		if [[ $dis -eq 0 ]] ; then
 			echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
-			python /home/hack3rwiz/Downloads/BurpFeed/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
+			python <path to bfeed.py>/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
 		fi
 		echo -e "${GREEN}[+] Thank you for using Lazy FuzzZ! :D"
 	fi
