@@ -12,11 +12,11 @@ new=0
 dis=0
 function usage()
 {
-	echo -e "${GREEN}\n[+] Usage:\n\t./lazyfuzz  <target-domain name> <subdomains' http/https URLs to Fuzz file> <common wordlist file>"	
-	echo -e "${GREEN}  Eg: ./lazyfuzz  example.com   example.com_https_subdomains.txt   common_fuzzing_wordlist.txt\n"
+	echo -e "${GREEN}\n[+] Usage:\n\t./lazyFuzzZ  <target-domain name> <subdomains' http/https URLs to Fuzz file> <common wordlist file>"	
+	echo -e "${GREEN}  Eg: ./lazyFuzzZ  example.com   example.com_https_subdomains.txt   common_fuzzing_wordlist.txt\n"
 	echo -e "${GREEN} -d : to DISABLE bfeed.py (IMPORTANT: flags should be written before command line arguments)"
 	echo -e "${GREEN} -f : to use your own ffuf flags. (IMPORTANT: flags should be written before command line arguments)"
-	echo -e "${GREEN}  Eg: ./lazyfuzz -f '-mc 403 -t 200'  example.com   example.com_https_subdomains.txt   common_fuzzing_wordlist.txt"
+	echo -e "${GREEN}  Eg: ./lazyFuzzZ -f '-mc 403 -t 200'  example.com   example.com_https_subdomains.txt   common_fuzzing_wordlist.txt"
 	echo -e "${CYAN}\n[+] Default ffuf flags used: -mc 200,403 -fs 0 -t 80 -sa -timeout 7"
 	echo -e "${RED}[-] WARNING: Do not specify Output Flags, -u, and -w !"
 }
@@ -90,14 +90,14 @@ then usage
 				rm lazyFuzzZ.output.${3}/${subdomain}.output			#removing it if it's empty
 			fi
 		else
-			echo -e "${RED}[-]No results found! :-| Moning on..\n"
+			echo -e "${RED}[-]No results found! :-| Moving on..\n"
 			rm lazyFuzzZ.output.${3}/${subdomain}.output			#removing it if it's empty
 		fi
 		sleep 7
 		done
 		if [[ $dis -eq 0 ]] ; then
 			echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
-			#python <path to bfeed.py>/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
+			python /home/hack3rwiz/Downloads/BurpFeed/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
 		fi
 		echo -e "${GREEN}[+] Thank you for using Lazy FuzzZ! :D"
 	fi
