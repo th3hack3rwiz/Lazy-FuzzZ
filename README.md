@@ -1,9 +1,13 @@
+![](https://th3hack3rwiz.github.io/images/LazyFuzz/banner_final.PNG)
 # Lazy-FuzzZ
+
+Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist. Fuzzing them one by one is a tedious task, not to mention the false positives we obtain in those results. To solve this problem I created Lazy FuzzZ. It fuzzes all those urls, removes all false positives and sends only legitimate results to burpsuite.
 
 ## Installation
 
 1. Clone the repository : git clone https://github.com/th3hack3rwiz/Lazy-FuzzZ.git
-2. The script is ready to use. 
+2. cd Lazy-FuzzZ ; chmod +x LazyFuzzZ.sh 
+3. The script is now ready to use. 
 
 ## Requirements
 
@@ -12,27 +16,25 @@
 
 ## Instructions
 
-- Add path to bfeed.py in LazyFuzzZ.sh on line no. 90
+- Add path to bfeed.py in LazyFuzzZ.sh on line no. 100 in LazyFuzzZ.sh.
+- Use flags before supplying command line arguments.
 
 ## Usage
 
-**[+] Usage:** ./LazyFuzzZ.sh  <target-domain_name> <subdomains_https_file.txt> <common_wordlist.txt>  
+![](https://th3hack3rwiz.github.io/images/LazyFuzz/usage.PNG)
 
-***Eg:*** ./LazyFuzzZ.sh  example.com example.com_https_subdomains.txt   common_fuzzing_wordlist.txt
+## Example usage
 
-  **-f :** to use your own ffuf flags. (**IMPORTANT:** -flags should be written before command line arguments)
-  
-  **-d :** to skip bfeed.py 
+![](https://th3hack3rwiz.github.io/images/LazyFuzz/results.PNG)
 
- ***Eg:*** ./LazyFuzzZ.sh -f '-mc 403 -t 200 -recursion -recursion-depth 3'  example.com example.com_https_subdomains.txt   common_fuzzing_wordlist.txt
+# Explained output
 
- **[+] Default FFUF Flags used:** -mc 200,403 -fs 0 -t 80 -sa -timeout 7
-
- **[-] WARNING:** Do not specify Output Flags, -u, and -w !
+![](https://th3hack3rwiz.github.io/images/LazyFuzz/output.PNG)
 
 ## Features 
 
 1. Helps in automating the fuzzing process.
-2. Fuzzes a set of subdomain URLs with a common-wordlist and gives clean results in a new directory.  
-3. Removes most false positive fuzzing outcomes.
-4. Adds only legitimate results to an active burp session using bfeed.py.
+2. Provides users with an option to use their prefered set of ffuf flags.
+3. Fuzzes a set of subdomain's URLs with a common-wordlist and gives clean results in a new directory. (Creates a new directory using name of the wordlist supplied)
+4. Removes most false positive from the results we obtain from ffuf.
+5. Adds only legitimate results to an active burp session using bfeed.py.
