@@ -99,11 +99,11 @@ else
 			rm lazyFuzzZ.output.${3}/${subdomain}.output
 		fi
 		sleep 7
-		done
-		if [[ $dis -eq 0 ]] ; then
-			echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
-			#python <path to bfeed.py>/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
-		fi
-		echo -e "${GREEN}[+] Thank you for using Lazy FuzzZ! :D"
-		rm test
+	done
+	if [[ $dis -eq 0 ]] ; then
+		echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
+		#python <path_to_bfeed.py>/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
 	fi
+	echo -e "${GREEN}[+] Thank you for using Lazy FuzzZ! :D"
+	rm test
+fi
