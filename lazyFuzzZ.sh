@@ -8,21 +8,26 @@ BLUE='\033[0;35m'
 GREEN='\033[0;32m'
 ORANGE='\033[0;33m'
 MAGENTA='\033[0;95m'
-new=0
-dis=0
+new=0	#new flag
+dis=0	#disable flag
 function usage()
 {
 	echo -e "${GREEN}\n[+] Usage:\n\t./lazyFuzzZ  <target-domain name> <subdomains' http/https URLs to Fuzz file> <common wordlist file>"	
 	echo -e "${GREEN}  Eg: ./lazyFuzzZ  example.com   example.com_https_subdomains.txt   common_fuzzing_wordlist.txt\n"
+	echo -e "${GREEN} -h : to display usage."
 	echo -e "${GREEN} -d : to DISABLE bfeed.py (IMPORTANT: flags should be written before command line arguments)"
 	echo -e "${GREEN} -f : to use your own ffuf flags. (IMPORTANT: flags should be written before command line arguments)"
 	echo -e "${GREEN}  Eg: ./lazyFuzzZ -f '-mc 403 -t 200'  example.com   example.com_https_subdomains.txt   common_fuzzing_wordlist.txt"
 	echo -e "${CYAN}\n[+] Default ffuf flags used: -mc 200,403 -fs 0 -t 80 -sa -timeout 7"
-	echo -e "${RED}[-] WARNING: Do not specify Output Flags, -u, and -w !"
+	echo -e "${RED}[-] WARNING: Do not specify Output Flags, -u, and -w for ffuf!"
 }
 
-while getopts :f:d fuzz_args; do 
+while getopts :f:dh fuzz_args; do 
 	case $fuzz_args in
+		h)	usage
+			exit 1
+			;;
+
 		f)
 			#echo -e "\n\n[+]Replacing original flags with new flags..."
 			new=1
@@ -44,7 +49,7 @@ shift $((OPTIND-1))
 
 if [[ $# -ne 3 ]] ; then
 	usage
-	echo -e "\n[+]Check usage!"
+	echo -e "\n[-]Not enough arguments! Check usage."
 else
 	printf "\n"
 	cat ${2} | grep ${1} | uniq | sed 's/'${1}'/'${1}'\/FUZZ/g' > ${1}.fuZZmeePleasee
@@ -71,12 +76,12 @@ else
 					max_size_freq=$(cat lazyFuzzZ.output.${3}/${subdomain}.output | awk -F "," '{print $2}'| sort -n | grep [[:digit:]] | uniq -c | sort -k1 -nr | head -1 | awk '{print $1}')
 					if [[ $line_of_result -gt 2 ]]; then
 						if [[ $max_size_freq -le line_of_result/2 ]] ; then
-							echo -e "${GREEN}[+] $( cat lazyFuzzZ.output.${3}/${subdomain}.output | wc -l )  Results were obtained for $line ! :D \n"
+							echo -e "${GREEN}[+] Number of results obtained for $line : $( cat lazyFuzzZ.output.${3}/${subdomain}.output | wc -l )  !:D \n"
 						else
 							echo -e "${ORANGE}[+]More false positives detected! :-]] Removing them..."
 							cat lazyFuzzZ.output.${3}/${subdomain}.output | grep -v $max_freq_size > buff ; cat buff > lazyFuzzZ.output.${3}/${subdomain}.output ; rm buff
 							if [[ -s lazyFuzzZ.output.${3}/${subdomain}.output ]] ; then
-								echo -e "${GREEN}[+] $(cat lazyFuzzZ.output.${3}/${subdomain}.output | wc -l) Results were obtained for $line ! :D \n"
+								echo -e "${GREEN}[+] Number of results obtained for $line : $( cat lazyFuzzZ.output.${3}/${subdomain}.output | wc -l )  !:D \n"
 							else
 								echo -e "${BLUE}[-] Results found were all false positives! :( Moving on..\n"
 								rm lazyFuzzZ.output.${3}/${subdomain}.output			#removing it if it's empty
@@ -84,7 +89,7 @@ else
 						fi 
 					else
 						cat lazyFuzzZ.output.${3}/${subdomain}.output | cut -d " " -f1 >> lazyFuzzZ.output.${3}/burpSeeds
-						echo -e "${GREEN}[+] $(cat lazyFuzzZ.output.${3}/${subdomain}.output | wc -l) Results were obtained for $line ! :D \n"
+						echo -e "${GREEN}[+] Number of results obtained for $line : $( cat lazyFuzzZ.output.${3}/${subdomain}.output | wc -l )  !:D \n"
 					fi	
 				else
 					echo -e "${BLUE}[-] Results found were all false positives! :( Moving on..\n"
@@ -92,7 +97,7 @@ else
 				fi				
 			else
 				cat lazyFuzzZ.output.${3}/${subdomain}.output | cut -d " " -f1 >> lazyFuzzZ.output.${3}/burpSeeds
-				echo -e "${GREEN}[+] $(cat lazyFuzzZ.output.${3}/${subdomain}.output | wc -l) Results were obtained for $line ! :D \n"
+				echo -e "${GREEN}[+] Number of results obtained for $line : $( cat lazyFuzzZ.output.${3}/${subdomain}.output | wc -l )  !:D \n"
 			fi
 		else
 			echo -e "${RED}[-]No results found! :-| Moving on..\n"
