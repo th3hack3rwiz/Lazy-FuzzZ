@@ -16,7 +16,7 @@ Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist. Fuzzi
 
 ## Instructions
 
-- Add the path to bfeed.py on line no. 106 of lazyFuzzZ.sh.
+- Add the path to bfeed.py on line no. 105 of lazyFuzzZ.sh.
 - Use flags (-d -f) if required, before supplying command line arguments.
 
 ## Usage
