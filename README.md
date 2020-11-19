@@ -27,7 +27,7 @@ Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist for co
 
 ## Example usage
 
-![](https://th3hack3rwiz.github.io/images/LazyFuzz/result.PNG)
+![](https://th3hack3rwiz.github.io/images/LazyFuzz/results.PNG)
 
 # Explained output
 
