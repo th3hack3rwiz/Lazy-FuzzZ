@@ -1,4 +1,4 @@
-![](https://th3hack3rwiz.github.io/images/LazyFuzz/banner.PNG)
+![](https://th3hack3rwiz.github.io/images/LazyFuzz/banner_final.PNG)
 # Lazy-FuzzZ
 
 Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist. Fuzzing them one by one is a tedious task, not to mention the false positives we obtain in those results. To solve this problem I created Lazy FuzzZ. It fuzzes all those urls, removes all false positives and sends only legitimate results to burpsuite.
@@ -23,11 +23,11 @@ Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist. Fuzzi
 
 - It  requires 3 command line arguments: ./lazyFuzzZ.sh <target_domain_name> <subdomains_https.txt> <common-wordlist.txt>
 
-![](https://th3hack3rwiz.github.io/images/LazyFuzz/usage.PNG)
+![](https://th3hack3rwiz.github.io/images/LazyFuzz/usage_final.PNG)
 
 ## Example usage
 
-![](https://th3hack3rwiz.github.io/images/LazyFuzz/results.PNG)
+![](https://th3hack3rwiz.github.io/images/LazyFuzz/results_final.PNG)
 
 # Explained output
 
