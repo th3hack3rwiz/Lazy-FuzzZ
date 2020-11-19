@@ -1,11 +1,11 @@
 #!/bin/bash
-echo -e "\033[0;37m\e[1m$(figlet -f slant  Lazy FuzzZ)"
+BOLD='\e[1m'
 GOLD='\e[38;5;226m'
-echo -e "\033[0;37m\e[1m\n\t\t\t  ${GOLD}© Created By: th3hack3rwiz"
-#RED='\033[0;31m'
+GREY='\033[0;37m'
+echo -e "${GOLD}${BOLD}$(figlet -f slant  Lazy FuzzZ)"
+echo -e "\033[0;37m\e[1m\n\t\t\t  ${GREY}${BOLD}© Created By: th3hack3rwiz"
 CYAN='\033[0;36m'
 PEACH='\e[38;5;216m'
-#GREEN='\033[0;32m'
 GREEN='\e[38;5;149m'
 ORANGE='\e[38;5;202m'
 MAGENTA='\033[0;95m'
