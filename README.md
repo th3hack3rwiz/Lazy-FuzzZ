@@ -1,7 +1,7 @@
 ![](https://th3hack3rwiz.github.io/images/LazyFuzz/banner_final.PNG)
 # Lazy-FuzzZ
 
-Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist. Fuzzing them one by one is a tedious task, not to mention the false positives we obtain in those results. To solve this problem I created Lazy FuzzZ. It fuzzes all those urls, removes all false positives and sends only legitimate results to burpsuite.
+Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist for content discovery. Fuzzing each URL one by one is a tedious task, and not to mention the false positives we obtain in those results. To solve this problem I created Lazy FuzzZ. It fuzzes all those urls, removes all the false positive results and stores only legitimate results which are later sent to Burp Suite.
 
 ## Installation
 
