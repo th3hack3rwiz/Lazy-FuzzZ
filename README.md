@@ -35,7 +35,7 @@ Sometimes we want to fuzz a set of sub-domain URLs with a common wordlist for co
 
 ## Features 
 
-1. Helps in automating the fuzzing process.
+1. Helps in automating the directory enumeration process.
 2. Provides users with an option to use their prefered set of ffuf flags.
 3. Fuzzes a set of subdomain's URLs with a common-wordlist and gives clean results in a new directory. (Creates a new directory using name of the wordlist supplied)
 4. Removes most false positive from the results we obtain from ffuf.
