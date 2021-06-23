@@ -124,6 +124,7 @@ else
 		fi
 		sleep 7
 	done
+	rm  ${1}.fuZZmeePleasee
 	if [[ $dis -eq 0 ]] ; then
 		echo -e "\n${CYAN}[+]Firing up BurpFeed and sending the results to Burpsuite!"
 		#python <path_to_bfeed.py>/bfeed.py lazyFuzzZ.output.${3}/burpSeeds > /dev/null
