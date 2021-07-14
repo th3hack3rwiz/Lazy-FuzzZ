@@ -131,4 +131,5 @@ else
 	fi
 	echo -e "${GREEN}[+] Thank you for using Lazy FuzzZ! :D"
 	rm test
+	rm ${1}.fuZZmeePleasee
 fi
